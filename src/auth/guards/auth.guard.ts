@@ -6,6 +6,11 @@ import {
 } from '@nestjs/common';
 import { JwtService, TokenExpiredError } from '@nestjs/jwt';
 import { Request } from 'express';
+import { UserPayload } from '../services/login/service/login.service';
+
+export interface RequestUser extends Request {
+    usuario: UserPayload;
+}
 @Injectable()
 export class JwtGuards implements CanActivate {
     constructor(private readonly jwtService: JwtService) {}

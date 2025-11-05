@@ -7,7 +7,11 @@ import { LoginInputDto } from '../dto/loginInputDto';
 import { PostUsuarioRepository } from 'src/usuario/services/postUsuario/repository/postUsuario.repository';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { PostUsuarioInputDto } from 'src/usuario/services/postUsuario/dto/postUsuarioInputDto';
+
+export interface UserPayload {
+    sub: string;
+    username: string;
+}
 @Injectable()
 export class AuthService {
     constructor(
@@ -27,9 +31,9 @@ export class AuthService {
         if (!pass) {
             throw new UnauthorizedException('Email ou senha incorretos');
         }
-        const payload = {
+        const payload: UserPayload = {
             sub: result!.id,
-            nome_usuario: result!.nome,
+            username: result!.nome,
         };
 
         return {
