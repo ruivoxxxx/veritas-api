@@ -6,7 +6,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PedidoEntity } from './pedido.entity';
-import { ProdutoEntity } from 'src/produto/entity/produto.entity';
+import { ProdutoEntity } from '../../produto/entity/produto.entity';
 
 @Entity({ name: 'Item-pedidos' })
 export class ItemPedidoEntity {
