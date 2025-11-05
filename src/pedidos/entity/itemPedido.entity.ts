@@ -5,10 +5,10 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { PedidosEntity } from './pedido.entity';
+import { PedidoEntity } from './pedido.entity';
 import { ProdutoEntity } from 'src/produto/entity/produto.entity';
 
-@Entity({ name: 'pedidos' })
+@Entity({ name: 'Item-pedidos' })
 export class ItemPedidoEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -19,15 +19,14 @@ export class ItemPedidoEntity {
     @Column({ name: 'preco_venda', nullable: false })
     preco_venda?: number;
 
-    @OneToMany(() => PedidosEntity, (pedido) => pedido.itemPedido, {
+    @OneToMany(() => PedidoEntity, (pedido) => pedido.itemPedido, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    pedido: PedidosEntity;
+    pedido: PedidoEntity;
 
     @ManyToOne(() => ProdutoEntity, (produto) => produto.itemPedido, {
         cascade: ['update'],
     })
     produto?: ProdutoEntity;
 }
-

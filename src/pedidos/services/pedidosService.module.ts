@@ -1,5 +1,5 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PedidosEntity } from '../entity/pedido.entity';
+import { PedidoEntity } from '../entity/pedido.entity';
 import { Module } from '@nestjs/common';
 import { PedidoController } from '../controller/pedido.controller';
 import { PostPedidoService } from './postPedido/service/postPedido.service';
@@ -12,7 +12,7 @@ import { ProdutoEntity } from 'src/produto/entity/produto.entity';
 @Module({
     imports: [
         TypeOrmModule.forFeature([
-            PedidosEntity,
+            PedidoEntity,
             UsuarioEntity,
             ItemPedidoEntity,
             ProdutoEntity,

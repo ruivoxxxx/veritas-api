@@ -34,7 +34,7 @@ export class PedidoController {
     }
 
     @Get('')
-    @UseGuards(JwtGuards)
+    // @UseGuards(JwtGuards)
     @ApiOperation({ summary: 'Busca de pedido por Id' })
     @ApiOkResponse({ description: 'Pedido encontrado com sucesso!' })
     @ApiInternalServerErrorResponse({ description: 'Erro no banco de dados' })

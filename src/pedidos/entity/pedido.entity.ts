@@ -7,10 +7,10 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ItemPedidoEntity as ItemPedidoEntity } from './itemPedido.entity';
+import { ItemPedidoEntity } from './itemPedido.entity';
 
 @Entity({ name: 'pedidos' })
-export class PedidosEntity {
+export class PedidoEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -34,7 +34,7 @@ export class PedidosEntity {
     })
     usuario: UsuarioEntity;
 
-    @ManyToOne(() => ItemPedidoEntity, (itemPedido) => itemPedido.pedido, {
+    @OneToMany(() => ItemPedidoEntity, (itemPedido) => itemPedido.pedido, {
         cascade: true,
     })
     itemPedido: ItemPedidoEntity[];
