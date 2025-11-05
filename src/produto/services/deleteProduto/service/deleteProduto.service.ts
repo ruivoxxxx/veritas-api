@@ -11,7 +11,7 @@ export class DeleteProdutoService {
         private readonly deleteProdutoRepository: DeleteProdutoRepository,
     ) {}
 
-    async execute(id: string) {
+    async executes(id: string) {
         try {
             const produto = await this.deleteProdutoRepository.buscaProduto(id);
             if (!produto) {
