@@ -1,8 +1,9 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsuarioEntity } from 'src/usuario/entity/usuario.entity';
 import { IsNull, Repository } from 'typeorm';
-import { GetUsuarioOutputDto } from '../dto/getUsuarioOutputDto';
+
 import { Injectable } from '@nestjs/common';
+import { GetUsuarioOutputDto } from '../dto/getUsuarioOutputDto';
 @Injectable()
 export class GetUsuarioRepository {
     constructor(

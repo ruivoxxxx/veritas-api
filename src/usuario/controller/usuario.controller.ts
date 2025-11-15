@@ -8,21 +8,20 @@ import {
     Put,
 } from '@nestjs/common';
 
+import { GetUsuarioService } from '../services/getUsuario/service/getUsuario.service.js';
+import { PostUsuarioService } from '../services/postUsuario/service/postUsuario.service.js';
+import { GetUsuarioByIdService } from '../services/getUsuarioById/service/getUsuarioById.service.js';
+import { PutUsuarioService } from '../services/putUsuario/service/putUsuario.service.js';
+import { DeleteUsuarioService } from '../services/deleteUsuario/service/deleteUsuario.service.js';
+import { PostUsuarioInputDto } from '../services/postUsuario/dto/postUsuarioInputDto.js';
+import { GetUsuarioOutputDto } from '../services/getUsuario/dto/getUsuarioOutputDto.js';
+import { PutUsuarioInputDto } from '../services/putUsuario/dto/putUsuarioInputDto.js';
 import {
     ApiInternalServerErrorResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiOperation,
 } from '@nestjs/swagger';
-
-import { GetUsuarioService } from '../services/getUsuario/service/getUsuario.service';
-import { PostUsuarioService } from '../services/postUsuario/service/postUsuario.service';
-import { PostUsuarioInputDto } from '../services/postUsuario/dto/postUsuarioInputDto';
-import { PutUsuarioInputDto } from '../services/putUsuario/dto/putUsuarioInputDto';
-import { PutUsuarioService } from '../services/putUsuario/service/putUsuario.service';
-import { DeleteUsuarioService } from '../services/deleteUsuario/service/deleteUsuario.service';
-import { GetUsuarioByIdService } from '../services/getUsuarioById/service/getUsuarioById.service';
-import { GetUsuarioOutputDto } from '../services/getUsuario/dto/getUsuarioOutputDto';
 @Controller('usuario')
 export class UsuarioController {
     constructor(
