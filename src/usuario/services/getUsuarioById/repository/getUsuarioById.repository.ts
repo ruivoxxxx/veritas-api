@@ -10,7 +10,7 @@ export class GetUsuarioByIdRepository {
     ) {}
     async getUsuarioById(id: string) {
         return await this.dataBaseService.findOne({
-            select: ['id', 'nome', 'email'],
+            select: ['id', 'nome', 'email', 'senha'],
             where: { id: id, deleted_at: IsNull() },
         });
     }

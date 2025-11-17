@@ -7,6 +7,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -20,18 +21,6 @@ import { redisStore } from 'cache-manager-redis-yet';
         ProdutoModule,
         UsuarioModule,
         PedidosModule,
-        CacheModule.registerAsync({
-            useFactory: async () => ({
-                store: await redisStore({
-                    socket: {
-                        host: '127.0.0.1',
-                        port: 6379,
-                    },
-                    ttl: 3600 * 1000,
-                }),
-            }),
-            isGlobal: true,
-        }),
     ],
     controllers: [],
     providers: [],

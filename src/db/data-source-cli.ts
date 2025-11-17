@@ -4,8 +4,9 @@ import { ProdutoEntity } from '../produto/entity/produto.entity';
 import { UsuarioEntity } from '../usuario/entity/usuario.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import 'dotenv/config';
-import { PedidosEntity } from '../pedidos/entity/pedido.entity';
-import { ItemPedidoEntity } from 'src/pedidos/entity/itemPedido.entity';
+import { PedidoEntity } from '../pedidos/entity/pedido.entity';
+import { ItemPedidoEntity } from '../pedidos/entity/itemPedido.entity';
+
 const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
     host: process.env.DB_HOST,
@@ -18,7 +19,7 @@ const dataSourceOptions: DataSourceOptions = {
         UsuarioEntity,
         ProdutoImagemEntity,
         ProdutoCaracteristicaEntity,
-        PedidosEntity,
+        PedidoEntity,
         ItemPedidoEntity,
     ],
     synchronize: false,

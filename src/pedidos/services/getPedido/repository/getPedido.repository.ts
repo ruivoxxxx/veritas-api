@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PedidosEntity } from 'src/pedidos/entity/pedido.entity';
+import { PedidoEntity } from 'src/pedidos/entity/pedido.entity';
 import { IsNull, Repository } from 'typeorm';
 import { GetPedidoInputDto } from '../dto/getPedidoInputDto';
 
 @Injectable()
 export class GetPedidoRepository {
     constructor(
-        @InjectRepository(PedidosEntity)
-        private readonly dataBaseService: Repository<PedidosEntity>,
+        @InjectRepository(PedidoEntity)
+        private readonly dataBaseService: Repository<PedidoEntity>,
     ) {}
 
     async buscaProduto(data: GetPedidoInputDto) {

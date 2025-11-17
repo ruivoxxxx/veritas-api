@@ -1,4 +1,4 @@
-import { PedidosEntity } from '../../pedidos/entity/pedido.entity';
+import { PedidoEntity } from '../../pedidos/entity/pedido.entity';
 import {
     Column,
     CreateDateColumn,
@@ -11,6 +11,9 @@ import {
 export class UsuarioEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
+
+    // @Column({ name: 'nome_usuario', length: 100, nullable: false })
+    // nome_usuario: string;
 
     @Column({ name: 'nome', length: 255, nullable: true })
     nome: string;
@@ -30,6 +33,6 @@ export class UsuarioEntity {
     @Column({ name: 'deleted_at', type: 'timestamp', nullable: true })
     deleted_at;
 
-    @OneToMany(() => PedidosEntity, (pedido) => pedido.usuario)
-    pedidos: PedidosEntity[];
+    @OneToMany(() => PedidoEntity, (pedido) => pedido.usuario)
+    pedidos: PedidoEntity[];
 }

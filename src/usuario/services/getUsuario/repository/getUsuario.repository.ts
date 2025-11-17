@@ -12,7 +12,7 @@ export class GetUsuarioRepository {
 
     async getUsuarios(): Promise<GetUsuarioOutputDto[]> {
         return await this.dataBaseService.find({
-            select: ['id', 'nome', 'email'],
+            select: ['id', 'nome', 'email', 'senha'],
             where: { deleted_at: IsNull() },
         });
     }

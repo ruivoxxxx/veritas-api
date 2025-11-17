@@ -1,0 +1,38 @@
+{
+    "terminalManager.restoreOnStartup": true,
+    "terminal.integrated.defaultLocation": "editor",
+    "symbols.hidesExplorerArrows": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.lineHeight": 1.8,
+    "editor.rulers": [80, 128],
+    "editor.renderLineHighlight": "gutter",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 14,
+    "explorer.compactFolders": false,
+    "editor.semanticHighlighting.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.horizontal": "hidden",
+    "apc.electron": {
+        "titleBarStyle": "hiddenInset"
+    },
+    "workbench.layoutControl.enabled": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.CustomBrowser": "chrome:PrivateMode",
+    "explorer.confirmDelete": false,
+    "window.commandCenter": false,
+    "fiveServer.browser": [],
+    "git.confirmSync": false,
+    "git.suggestSmartCommit": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false
+}
+

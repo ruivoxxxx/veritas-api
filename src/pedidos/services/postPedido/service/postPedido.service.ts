@@ -3,7 +3,7 @@ import {
     InternalServerErrorException,
     NotFoundException,
 } from '@nestjs/common';
-import { PedidosEntity } from 'src/pedidos/entity/pedido.entity';
+import { PedidoEntity } from 'src/pedidos/entity/pedido.entity';
 import { StatusPedido } from 'src/enum/statuspedido.enum';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsuarioEntity } from 'src/usuario/entity/usuario.entity';
@@ -14,10 +14,10 @@ import { ItemPedidoEntity } from 'src/pedidos/entity/itemPedido.entity';
 import { ProdutoEntity } from 'src/produto/entity/produto.entity';
 
 @Injectable()
-export class PedidoService {
+export class PostPedidoService {
     constructor(
-        @InjectRepository(PedidosEntity)
-        private readonly pedidoRepository: Repository<PedidosEntity>,
+        @InjectRepository(PedidoEntity)
+        private readonly pedidoRepository: Repository<PedidoEntity>,
         @InjectRepository(UsuarioEntity)
         private readonly usuarioRepository: Repository<UsuarioEntity>,
         @InjectRepository(ProdutoEntity)
@@ -29,6 +29,7 @@ export class PedidoService {
                 select: ['id'],
                 where: { id: usuario_id, deleted_at: IsNull() },
             });
+            console.log(usuarios);
 
             if (!usuarios) {
                 throw new NotFoundException('Usuário não encontrado');
@@ -36,7 +37,7 @@ export class PedidoService {
             const produtosId = data.itens_pedido.map(
                 (itemPedido) => itemPedido.produtoId,
             );
-            const pedidoEntity = new PedidosEntity();
+            const pedidoEntity = new PedidoEntity();
 
             const produtosRelacionados = await this.produtoRepository.findBy({
                 id: In(produtosId),
