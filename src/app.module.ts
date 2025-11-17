@@ -21,6 +21,19 @@ import { AuthModule } from './auth/auth.module';
         ProdutoModule,
         UsuarioModule,
         PedidosModule,
+        CacheModule.registerAsync({
+            useFactory: async () => ({
+                store: await redisStore({
+                    socket: {
+                        host: '127.0.0.1',
+                        port: 6379,
+                    },
+                    ttl: 3600 * 1000,
+                }),
+            }),
+            isGlobal: true,
+        }),
+        AuthModule,
     ],
     controllers: [],
     providers: [],

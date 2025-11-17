@@ -26,6 +26,8 @@ import { GetProdutoByIdService } from '../services/getProdutoById/service/getPro
 import { DeleteProdutoService } from '../services/deleteProduto/service/deleteProduto.service';
 import { GetProdutosService } from '../services/getProdutos/service/getProdutos.service';
 import { GetProdutosOutPutDto } from '../services/getProdutos/dto/getProdutosOutPut.dto';
+import { JwtGuards } from 'src/auth/guards/auth.guard';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('produto')
 export class ProdutoController {
