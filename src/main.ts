@@ -13,8 +13,8 @@ async function bootstrap() {
         }),
     );
     const config = new DocumentBuilder()
-        .setTitle('Compree Api')
-        .setDescription('Compree E-commerce Api descrição')
+        .setTitle('Veritas Api')
+        .setDescription('Veritas E-commerce Api descrição')
         .setVersion('1.0')
         .addTag('Módulos')
         .addBearerAuth({
