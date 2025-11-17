@@ -19,6 +19,7 @@ export class DeleteUsuarioRepository {
             .createQueryBuilder()
             .update(UsuarioEntity)
             .set({ deleted_at: () => 'NOW()' })
-            .where('id=:id', { id: id, deleted_at: IsNull() }).execute;
+            .where('id=:id', { id: id, deleted_at: IsNull() })
+            .execute();
     }
 }

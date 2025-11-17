@@ -46,7 +46,7 @@ describe('GetUsuarioService', async () => {
             const result = await sut.execute();
 
             //Assert
-            expect(getUsuarioRepository.getUsuarios).toHaveBeenCalled();
+            expect(getUsuarioRepository.getUsuarios).toHaveBeenCalledWith();
 
             expect(result).toStrictEqual([
                 { id: '1', email: 'junior@gmail.com', nome: 'junior' },
