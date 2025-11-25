@@ -28,6 +28,7 @@ import { GetProdutosService } from '../services/getProdutos/service/getProdutos.
 import { GetProdutosOutPutDto } from '../services/getProdutos/dto/getProdutosOutPut.dto';
 import { JwtGuards } from 'src/auth/guards/auth.guard';
 import { CacheInterceptor } from '@nestjs/cache-manager';
+import { GetProdutosInputDto } from '../services/getProdutos/dto/getProdutosInputDto';
 @Controller('produto')
 @UseGuards(JwtGuards)
 export class ProdutoController {
@@ -45,8 +46,8 @@ export class ProdutoController {
         description: 'Produtos listados com sucesso!',
     })
     @ApiInternalServerErrorResponse({ description: 'Erro no banco de dados' })
-    async listProduto(): Promise<GetProdutosOutPutDto[]> {
-        return await this.getProdutos.execute();
+    async listProduto(@Query() data: GetProdutosInputDto) {
+        return await this.getProdutos.execute(data);
     }
 
     @Get('/:id')

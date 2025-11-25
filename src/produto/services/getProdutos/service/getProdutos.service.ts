@@ -1,6 +1,11 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+    BadRequestException,
+    Injectable,
+    InternalServerErrorException,
+} from '@nestjs/common';
 import { GetProdutosRepository } from '../repository/getProdutos.repository';
 import { GetProdutosOutPutDto } from '../dto/getProdutosOutPut.dto';
+import { GetProdutosInputDto } from '../dto/getProdutosInputDto';
 
 @Injectable()
 export class GetProdutosService {
@@ -8,10 +13,25 @@ export class GetProdutosService {
         private readonly getProdutosRepository: GetProdutosRepository,
     ) {}
 
-    async execute(): Promise<GetProdutosOutPutDto[]> {
+    async execute(data: GetProdutosInputDto) {
         try {
+            const result = await this.getProdutosRepository.countProdutos();
+
+            if (!result) {
+                return {
+                    page: data.page,
+                    size: data.size,
+                    total: 0,
+                    data: [],
+                };
+            }
             const produtos = await this.getProdutosRepository.getProdutos();
-            return produtos;
+            return {
+                page: data.page,
+                size: data.size,
+                total: result,
+                data: produtos,
+            };
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }

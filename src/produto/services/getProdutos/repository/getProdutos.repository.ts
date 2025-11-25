@@ -11,6 +11,17 @@ export class GetProdutosRepository {
         private readonly dataBaseService: Repository<ProdutoEntity>,
     ) {}
 
+    async countProdutos(): Promise<number> {
+        const sql = `
+        SELECT COUNT(*) AS TOTAL
+        FROM PRODUTOS 
+        WHERE DELETED_AT IS NULL `;
+
+        const result = await this.dataBaseService.query<{ total: number }>(sql);
+
+        return result[0]?.total;
+    }
+
     async getProdutos(): Promise<GetProdutosOutPutDto[]> {
         const result = await this.dataBaseService.find({
             select: ['id', 'nome', 'valor', 'categoria', 'descricao'],
