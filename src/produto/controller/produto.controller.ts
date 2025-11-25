@@ -28,8 +28,8 @@ import { GetProdutosService } from '../services/getProdutos/service/getProdutos.
 import { GetProdutosOutPutDto } from '../services/getProdutos/dto/getProdutosOutPut.dto';
 import { JwtGuards } from 'src/auth/guards/auth.guard';
 import { CacheInterceptor } from '@nestjs/cache-manager';
-
 @Controller('produto')
+@UseGuards(JwtGuards)
 export class ProdutoController {
     constructor(
         private readonly getProdutos: GetProdutosService,
@@ -40,7 +40,6 @@ export class ProdutoController {
     ) {}
 
     @Get()
-    @UseGuards(JwtGuards)
     @ApiOperation({ summary: 'Lista Produtos' })
     @ApiOkResponse({
         description: 'Produtos listados com sucesso!',

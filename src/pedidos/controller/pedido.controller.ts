@@ -20,14 +20,14 @@ import { PostPedidoInputDto } from '../services/postPedido/dto/postPedidoInputDt
 import { JwtGuards } from 'src/auth/guards/auth.guard';
 import type { RequestUser } from 'src/auth/guards/auth.guard';
 @Controller('pedidos')
+@UseGuards(JwtGuards)
 export class PedidoController {
     constructor(
         private readonly pedidoService: PostPedidoService,
         private readonly getPedidoService: GetPedidoService,
     ) {}
 
-    @Post('')
-    @UseGuards(JwtGuards)
+    @Post('cria-pedido')
     @ApiOperation({ summary: 'Criação de Pedido' })
     @ApiOkResponse({ description: 'Pedido criado com sucesso!' })
     @ApiNotFoundResponse({
@@ -42,8 +42,7 @@ export class PedidoController {
         return await this.pedidoService.execute(usuario_id, data);
     }
 
-    @Get('')
-    // @UseGuards(JwtGuards)
+    @Get('busca-pedido')
     @ApiOperation({ summary: 'Busca de pedido por Id' })
     @ApiOkResponse({ description: 'Pedido encontrado com sucesso!' })
     @ApiInternalServerErrorResponse({ description: 'Erro no banco de dados' })
