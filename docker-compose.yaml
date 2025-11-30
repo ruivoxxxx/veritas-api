@@ -1,4 +1,23 @@
 services:
+    api:
+        build: .
+        container_name: veritas-api
+        restart: always
+        ports:
+            - '3000:3000'
+        env_file:
+            - .env
+        depends_on:
+            - postgres
+        environment:
+            DB_HOST: ${DB_HOST}
+            DB_PORT: 5432
+            DB_USER: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            Db_NAME: ${DB_NAME}
+        networks:
+            - app-network
+
     postgres:
         image: postgres:latest
         environment:
@@ -10,7 +29,7 @@ services:
         ports:
             - '5432:5432'
         networks:
-            - postgres
+            - app-network
         restart: unless-stopped
 
     pgadmin:
@@ -23,18 +42,10 @@ services:
         depends_on:
             - postgres
         networks:
-            - postgres
-    redis:
-        container_name: redis-cache
-        image: redis:7.0-alpine
-        ports:
-            - '6379:6379'
-        volumes:
-            - redis:/data
+            - app-network
 networks:
-    postgres:
+    app-network:
         driver: bridge
 
 volumes:
     postgres:
-    redis:
