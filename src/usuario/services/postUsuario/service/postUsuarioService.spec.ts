@@ -3,6 +3,10 @@ import { PostUsuarioService } from './postUsuario.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostUsuarioRepository } from '../repository/postUsuario.repository';
 import { PostUsuarioInputDto } from '../dto/postUsuarioInputDto';
+import {
+    BadRequestException,
+    InternalServerErrorException,
+} from '@nestjs/common';
 
 describe('GetUsuarioByIdService', async () => {
     let sut: PostUsuarioService;
@@ -30,13 +34,12 @@ describe('GetUsuarioByIdService', async () => {
     });
 
     describe('PostUsuarioService', async () => {
+        const user: PostUsuarioInputDto = {
+            nome: 'junior',
+            email: 'CONTATOOJUNIORTAVARES@GMAIL.COM',
+            senha: 'senhasenha',
+        };
         it('Should be create user sucessfully', async () => {
-            const user: PostUsuarioInputDto = {
-                nome: 'junior',
-                email: 'CONTATOOJUNIORTAVARES@GMAIL.COM',
-                senha: 'senhasenha',
-            };
-
             vi.spyOn(
                 postUsuarioRepository,
                 'searchEmail',
@@ -56,6 +59,31 @@ describe('GetUsuarioByIdService', async () => {
             expect(result).toStrictEqual(undefined);
         });
 
-        it('Should be exist user', async());
+        it('Should be exist user', async () => {
+            vi.spyOn(
+                postUsuarioRepository,
+                'searchEmail',
+            ).mockResolvedValueOnce(true);
+
+            expect(sut.execute(user)).rejects.toStrictEqual(
+                new BadRequestException('Usuário já existe'),
+            );
+        });
+
+        it('Should be throw a Internal Server Error', () => {
+            vi.spyOn(
+                postUsuarioRepository,
+                'searchEmail',
+            ).mockResolvedValueOnce(false);
+
+            vi.spyOn(
+                postUsuarioRepository,
+                'createUsuario',
+            ).mockRejectedValueOnce(new Error());
+
+            expect(sut.execute(user)).rejects.toStrictEqual(
+                new InternalServerErrorException(),
+            );
+        });
     });
 });

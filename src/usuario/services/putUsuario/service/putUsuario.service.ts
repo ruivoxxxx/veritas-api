@@ -12,7 +12,7 @@ export class PutUsuarioService {
         try {
             const usuario = await this.putUsuarioRepository.buscaUsuario(id);
             if (!usuario) {
-                throw new NotFoundException('Usuário não encontrado.');
+                throw new NotFoundException('Usuário não encontrado!');
             }
 
             await this.putUsuarioRepository.atualizaUsuario(data);

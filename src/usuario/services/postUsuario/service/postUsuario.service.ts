@@ -19,12 +19,13 @@ export class PostUsuarioService {
             );
 
             if (result) {
-                throw new BadRequestException('Email já está sendo utilizado');
+                throw new BadRequestException('Usuário já existe');
             }
             data.senha = await bcrypt.hash(data.senha, await bcrypt.genSalt());
 
             await this.postUsuarioRepository.createUsuario(data);
         } catch (error) {
+            if (error instanceof BadRequestException) throw error;
             throw new InternalServerErrorException(error.message);
         }
     }
