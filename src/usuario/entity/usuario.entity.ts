@@ -1,4 +1,4 @@
-import { PedidoEntity } from '../../pedidos/entity/pedido.entity';
+import { PedidoEntity } from 'src/pedidos/entity/pedido.entity';
 import {
     Column,
     CreateDateColumn,

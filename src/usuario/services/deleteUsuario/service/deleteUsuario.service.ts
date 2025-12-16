@@ -14,10 +14,10 @@ export class DeleteUsuarioService {
         try {
             const usuario = await this.deleteUsuarioRepository.buscaUsuario(id);
             if (!usuario) {
-                throw new NotFoundException('Usuário não encontrado');
+                throw new NotFoundException('Usuário não encontrado!');
             }
 
-            return await this.deleteUsuarioRepository.deletaUsuario(id);
+            await this.deleteUsuarioRepository.deletaUsuario(id);
         } catch (error) {
             if (error instanceof NotFoundException) throw error;
             throw new InternalServerErrorException(error.message);

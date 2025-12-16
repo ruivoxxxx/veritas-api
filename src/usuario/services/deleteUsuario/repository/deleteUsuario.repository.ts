@@ -8,17 +8,20 @@ export class DeleteUsuarioRepository {
         @InjectRepository(UsuarioEntity)
         private readonly dataBaseService: Repository<UsuarioEntity>,
     ) {}
-    async buscaUsuario(id: string) {
-        return await this.dataBaseService.findOne({
+    async buscaUsuario(id: string): Promise<boolean> {
+        const result = await this.dataBaseService.findOne({
             select: ['id'],
             where: { id: id, deleted_at: IsNull() },
         });
+
+        return !!result;
     }
     async deletaUsuario(id: string) {
         await this.dataBaseService
             .createQueryBuilder()
             .update(UsuarioEntity)
             .set({ deleted_at: () => 'NOW()' })
-            .where('id=:id', { id: id, deleted_at: IsNull() }).execute;
+            .where('id=:id', { id: id, deleted_at: IsNull() })
+            .execute();
     }
 }
