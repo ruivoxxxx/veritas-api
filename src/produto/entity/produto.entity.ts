@@ -6,8 +6,6 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-// import { ProdutoCaracteristicaEntity } from './produto-caracteristica.entity';
-// import { ProdutoImagemEntity } from './produto-imagem.entity';
 
 @Entity({ name: 'produtos' })
 export class ProdutoEntity {
@@ -39,18 +37,4 @@ export class ProdutoEntity {
 
     @OneToMany(() => ItemPedidoEntity, (itemPedido) => itemPedido.pedido)
     itemPedido: ItemPedidoEntity[];
-
-    // @OneToMany(
-    //     () => ProdutoCaracteristicaEntity,
-    //     (produtoCaracteristicaEntity) => produtoCaracteristicaEntity.produto,
-    //     { cascade: true, eager: true },
-    // )
-    // caracteristica: ProdutoCaracteristicaEntity[];
-
-    // @OneToMany(
-    //     () => ProdutoImagemEntity,
-    //     (produtoImagemEntity) => produtoImagemEntity.produto,
-    //     { cascade: true, eager: true },
-    // )
-    // imagem: ProdutoImagemEntity[];
 }

@@ -10,12 +10,12 @@ export class PostUsuarioRepository {
         private readonly dataBaseService: Repository<UsuarioEntity>,
     ) {}
 
-    async searchEmail(email: string): Promise<boolean> {
+    async searchEmail(email: string) {
         const result = await this.dataBaseService.findOne({
             where: { email: ILike(email), deleted_at: IsNull() },
         });
 
-        return !!result;
+        return result;
     }
     async createUsuario(data: PostUsuarioInputDto) {
         await this.dataBaseService

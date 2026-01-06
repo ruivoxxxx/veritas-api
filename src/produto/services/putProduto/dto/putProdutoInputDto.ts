@@ -21,10 +21,6 @@ export class PutProdutoInputDto {
     @IsString()
     id: string;
 
-    // @ApiProperty()
-    // @IsOptional()
-    // id_usuario: number;
-
     @ApiProperty()
     @IsString()
     @IsOptional()
